@@ -1,6 +1,14 @@
+"use client"
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { toggleDarkMode } from "@/redux/theme/themeSlice";
 import Image from "next/image";
 
 export default function Home() {
+  // const darkMode=useAppSelector((state)=>state.theme.darkMode);
+  // const dispatch=useAppDispatch();
+  // const handleDarkMode=()=>{
+  //   dispatch(toggleDarkMode())
+  // }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -8,6 +16,8 @@ export default function Home() {
           Get started by editing&nbsp;
           <code className="font-mono font-bold">src/app/page.tsx</code>
         </p>
+        {/* <button onClick={handleDarkMode}>Change Theme</button> */}
+
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
