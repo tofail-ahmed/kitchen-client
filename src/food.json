@@ -1,0 +1,73 @@
+[
+      {
+          "id": 1,
+          "name": "Margherita Pizza",
+          "description": "Classic delight with 100% real mozzarella cheese",
+          "price": 8.99,
+          "image": "https://example.com/images/margherita_pizza.jpg"
+      },
+      {
+          "id": 2,
+          "name": "Veggie Burger",
+          "description": "A delicious veggie patty with lettuce, tomato, and cheese",
+          "price": 5.49,
+          "image": "https://example.com/images/veggie_burger.jpg"
+      },
+      {
+          "id": 3,
+          "name": "Caesar Salad",
+          "description": "Fresh romaine lettuce, croutons, and Caesar dressing",
+          "price": 6.99,
+          "image": "https://example.com/images/caesar_salad.jpg"
+      },
+      {
+          "id": 4,
+          "name": "Spaghetti Carbonara",
+          "description": "Pasta with a creamy egg-based sauce, pancetta, and Parmesan cheese",
+          "price": 11.99,
+          "image": "https://example.com/images/spaghetti_carbonara.jpg"
+      },
+      {
+          "id": 5,
+          "name": "Grilled Chicken Sandwich",
+          "description": "Grilled chicken breast with lettuce, tomato, and mayo on a toasted bun",
+          "price": 7.99,
+          "image": "https://example.com/images/grilled_chicken_sandwich.jpg"
+      },
+      {
+          "id": 6,
+          "name": "Chocolate Cake",
+          "description": "Rich and moist chocolate cake with a chocolate ganache",
+          "price": 4.99,
+          "image": "https://example.com/images/chocolate_cake.jpg"
+      },
+      {
+          "id": 7,
+          "name": "Tacos",
+          "description": "Soft corn tortillas filled with your choice of meat, topped with onions and cilantro",
+          "price": 2.99,
+          "image": "https://example.com/images/tacos.jpg"
+      },
+      {
+          "id": 8,
+          "name": "Sushi Platter",
+          "description": "An assortment of fresh sushi rolls, sashimi, and nigiri",
+          "price": 15.99,
+          "image": "https://example.com/images/sushi_platter.jpg"
+      },
+      {
+          "id": 9,
+          "name": "French Fries",
+          "description": "Crispy golden fries, lightly salted",
+          "price": 2.49,
+          "image": "https://example.com/images/french_fries.jpg"
+      },
+      {
+          "id": 10,
+          "name": "Mango Smoothie",
+          "description": "Refreshing smoothie made with fresh mangoes and yogurt",
+          "price": 3.99,
+          "image": "https://example.com/images/mango_smoothie.jpg"
+      }
+  ]
+  
