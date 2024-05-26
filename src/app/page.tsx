@@ -56,10 +56,12 @@ export default function Home() {
                  {food.description}
                 </td>
                 <td>${food.price}</td>
-                <th className="flex flex-col gap-2 items-center justify-center my-auto ">
-                  <button className="btn btn-info btn-xs">Edit</button>
-                  <button className="btn btn-error btn-xs">Delete</button>
-                </th>
+                <td className=" ">
+  <div className="flex flex-col gap-2">
+    <button className="btn btn-info btn-xs">Edit</button>
+    <button className="btn btn-error btn-xs">Delete</button>
+  </div>
+</td>
               </tr>
             ))}
           </tbody>
