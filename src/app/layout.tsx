@@ -37,7 +37,7 @@ function RootContent({ children }: { children: React.ReactNode }) {
       <body className={inter.className}   >
         <div
           className={`${
-            darkMode ? "text-white bg-black" : "text-black bg-white"
+            darkMode ? "text-white bg-slate-400" : "text-black bg-white"
           }`}
           style={{ overflow: "auto" }}
         >
