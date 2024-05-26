@@ -21,24 +21,25 @@ export default function RootLayout({
 }>) {
   return (
     <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
+            {/* <PersistGate loading={null} persistor={persistor}> */}
 
       <RootContent>{children}</RootContent>
-      </PersistGate>
+      {/* </PersistGate> */}
     </Provider>
   );
 }
 
 function RootContent({ children }: { children: React.ReactNode }) {
   const darkMode = useAppSelector((state) => state.theme.darkMode);
-  console.log(darkMode);
+  // console.log(darkMode);
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className}   >
         <div
           className={`${
             darkMode ? "text-white bg-black" : "text-black bg-white"
           }`}
+          style={{ overflow: "auto" }}
         >
           {children}
         </div>

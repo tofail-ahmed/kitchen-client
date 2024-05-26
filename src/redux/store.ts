@@ -8,11 +8,11 @@ const persistConfig = {
   key: "root",
   storage,
 };
-const persistedThemeReducer = persistReducer(persistConfig, themeReducer);
+// const persistedThemeReducer = persistReducer(persistConfig, themeReducer);
 // const persistedFoodReducer=persistReducer(persistConfig,foodReducer)
 export const store = configureStore({
   reducer: {
-    theme: persistedThemeReducer,
+    theme: themeReducer,
     foodItems: foodReducer,
   },
 });
