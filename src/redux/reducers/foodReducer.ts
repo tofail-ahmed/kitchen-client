@@ -55,7 +55,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const foodSlice=createSlice({
   name:"foods",
   initialState:foodList,
-  reducers:{}
+  reducers:{
+    addFood:(state,action)=>{
+      // console.log("action",action)
+      state.push(action.payload)
+    }
+  }
 })
-
+export const {addFood}=foodSlice.actions;
 export default foodSlice.reducer;

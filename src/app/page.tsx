@@ -2,7 +2,8 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { toggleDarkMode } from "@/redux/theme/themeSlice";
 import Image from "next/image";
-
+import { useState } from "react";
+import CreateModal from "./components/createModal";
 export default function Home() {
   const darkMode = useAppSelector((state) => state.theme.darkMode);
   const dispatch = useAppDispatch();
@@ -11,12 +12,23 @@ export default function Home() {
   };
   let foods = useAppSelector((state) => state.foodItems);
   // console.log(foods)
+  const [showModal,setShowModal]=useState(false)
+  // console.log(showModal)
+  const openModal=()=>{
+    setShowModal(true)
+  }
+  const closeModal=()=>{
+    setShowModal(false)
+  }
   return (
-    <div className="max-w-[1200px] mx-auto overflow-y-auto">
+    <div className="max-w-[1200px] mx-auto overflow-y-auto -z-10">
       <button className="p-2 bg-green-300 rounded-md" onClick={handleDarkMode}>
         {darkMode ? "Light Theme" : "Dark Theme"}
       </button>
-
+<button onClick={openModal} className="rounded-md bg-green-500 p-2">Create Food+</button>
+{
+  showModal && <CreateModal closeModal={closeModal}/>
+}
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
