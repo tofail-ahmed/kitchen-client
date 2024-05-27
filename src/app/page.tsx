@@ -42,7 +42,7 @@ export default function Home() {
     setCurrentFoodItem(null);
     setShowUpdateModal(false);
   };
-  const handleDelete=(id)=>{
+  const handleDelete=(id:number)=>{
     dispatch(deletefood({id:id}))
   }
 
@@ -57,15 +57,15 @@ export default function Home() {
         Create Food+
       </button>
       {showCreateModal && <CreateModal closeCreateModal={closeCreateModal} />}
-      {showUpdateModal && (
+      {showUpdateModal && currentFoodItem && (
         <UpdateModal
         closeUpdateModal={closeUpdateModal}
           initialData={currentFoodItem}
-          // onSubmit={handleUpdate}
+          
         />
       )}
       <div className="overflow-x-auto mt-4">
-        <table className="min-w-full bg-white">
+        <table className="min-w-full bg-white/0">
           <thead>
             <tr>
               <th className="py-2 px-4 border-b">ID</th>

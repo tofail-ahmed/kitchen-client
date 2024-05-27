@@ -1,6 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./theme/themeSlice";
-import { persistStore, persistReducer } from 'redux-persist'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
 import storage from "redux-persist/lib/storage";
 import foodReducer from "./reducers/foodReducer";
 
@@ -15,6 +24,12 @@ export const store = configureStore({
     theme: themeReducer,
     foodItems: foodReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 // Get the type of our store variable
@@ -24,4 +39,4 @@ export type RootState = ReturnType<AppStore["getState"]>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = AppStore["dispatch"];
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);

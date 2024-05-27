@@ -5,8 +5,9 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 
 interface UpdateModalProps {
       closeUpdateModal: () => void;
-  initialData: FoodItem ;
-//   onSubmit: (data: FoodItem) => void;
+      initialData: FoodItem ; // Allow null
+
+
 }
 
 interface FoodItem {
@@ -36,7 +37,7 @@ closeUpdateModal();
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded-md shadow-lg">
+      <div className="bg-slate-200/30 backdrop-blur-md p-6 rounded-md shadow-lg">
         <h3 className="font-bold text-lg">Update Food Item</h3>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>

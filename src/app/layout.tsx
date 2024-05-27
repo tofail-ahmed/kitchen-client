@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { persistor, store } from "@/redux/store";
 import { PersistGate } from 'redux-persist/integration/react'
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
  const metadata: Metadata = {
   title: "Create Next App",
@@ -34,7 +34,7 @@ function RootContent({ children }: { children: React.ReactNode }) {
   // console.log(darkMode);
   return (
     <html lang="en">
-      <body className={inter.className}   >
+      <body    >
         <div
           className={`${
             darkMode ? "text-white bg-slate-400" : "text-black bg-white"
