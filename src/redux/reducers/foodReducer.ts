@@ -69,8 +69,15 @@ if(upFood){
   upFood.price=price;
   upFood.image=image;
 }
+    },
+    deletefood:(state,action)=>{
+      const {id}=action.payload;
+const upFood=state.find(food=>food.id==id);
+if(upFood){
+  return state.filter(food=>food.id!==id);
+}
     }
   }
 })
-export const {addFood,updateFood}=foodSlice.actions;
+export const {addFood,updateFood,deletefood}=foodSlice.actions;
 export default foodSlice.reducer;

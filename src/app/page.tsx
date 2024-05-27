@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import CreateModal from "./components/createModal";
 import UpdateModal from "./components/UpdateModal";
+import { deletefood } from "@/redux/reducers/foodReducer";
 interface FoodItem {
   id?: number;
   name: string;
@@ -41,16 +42,11 @@ export default function Home() {
     setCurrentFoodItem(null);
     setShowUpdateModal(false);
   };
+  const handleDelete=(id)=>{
+    dispatch(deletefood({id:id}))
+  }
 
-  // const handleCreate = (foodItem) => {
-  //   console.log("Creating new food item:", foodItem);
-  //   // Add the new food item to your state/store here
-  // };
-
-  // const handleUpdate = (foodItem) => {
-  //   console.log("Updating food item:", foodItem);
-  //   // Update the food item in your state/store here
-  // };
+ 
 
   return (
     <div className="max-w-[1200px] mx-auto overflow-y-auto p-4">
@@ -109,7 +105,7 @@ export default function Home() {
                     >
                       Update
                     </button>
-                    <button className="btn btn-error btn-xs">Delete</button>
+                    <button onClick={()=>handleDelete(food.id)} className="btn btn-error btn-xs">Delete</button>
                   </div>
                 </td>
               </tr>
