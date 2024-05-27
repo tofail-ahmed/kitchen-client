@@ -1,79 +1,117 @@
-"use client"
+"use client";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { toggleDarkMode } from "@/redux/theme/themeSlice";
 import Image from "next/image";
 import { useState } from "react";
 import CreateModal from "./components/createModal";
+import UpdateModal from "./components/UpdateModal";
+interface FoodItem {
+  id?: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+}
+
 export default function Home() {
   const darkMode = useAppSelector((state) => state.theme.darkMode);
   const dispatch = useAppDispatch();
   const handleDarkMode = () => {
     dispatch(toggleDarkMode());
   };
-  let foods = useAppSelector((state) => state.foodItems);
-  // console.log(foods)
-  const [showModal,setShowModal]=useState(false)
-  // console.log(showModal)
-  const openModal=()=>{
-    setShowModal(true)
-  }
-  const closeModal=()=>{
-    setShowModal(false)
-  }
+  const foods = useAppSelector((state) => state.foodItems);
+
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [currentFoodItem, setCurrentFoodItem] = useState<FoodItem | null>(null);
+  
+
+  const openCreateModal = () => {
+    setShowCreateModal(true);
+  };
+  const closeCreateModal = () => {
+    setShowCreateModal(false);
+  };
+
+  const openUpdateModal = (foodItem:FoodItem ) => {
+    setCurrentFoodItem(foodItem);
+    setShowUpdateModal(true);
+  };
+  const closeUpdateModal = () => {
+    setCurrentFoodItem(null);
+    setShowUpdateModal(false);
+  };
+
+  // const handleCreate = (foodItem) => {
+  //   console.log("Creating new food item:", foodItem);
+  //   // Add the new food item to your state/store here
+  // };
+
+  // const handleUpdate = (foodItem) => {
+  //   console.log("Updating food item:", foodItem);
+  //   // Update the food item in your state/store here
+  // };
+
   return (
-    <div className="max-w-[1200px] mx-auto overflow-y-auto -z-10">
+    <div className="max-w-[1200px] mx-auto overflow-y-auto p-4">
       <button className="p-2 bg-green-300 rounded-md" onClick={handleDarkMode}>
         {darkMode ? "Light Theme" : "Dark Theme"}
       </button>
-<button onClick={openModal} className="rounded-md bg-green-500 p-2">Create Food+</button>
-{
-  showModal && <CreateModal closeModal={closeModal}/>
-}
-      <div className="overflow-x-auto">
-        <table className="table">
-          {/* head */}
+      <button onClick={openCreateModal} className="ml-4 p-2 bg-green-500 rounded-md">
+        Create Food+
+      </button>
+      {showCreateModal && <CreateModal closeCreateModal={closeCreateModal} />}
+      {showUpdateModal && (
+        <UpdateModal
+        closeUpdateModal={closeUpdateModal}
+          initialData={currentFoodItem}
+          // onSubmit={handleUpdate}
+        />
+      )}
+      <div className="overflow-x-auto mt-4">
+        <table className="min-w-full bg-white">
           <thead>
             <tr>
-              <th>Snap</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th>Actions</th>
+              <th className="py-2 px-4 border-b">ID</th>
+              <th className="py-2 px-4 border-b">Snap</th>
+              <th className="py-2 px-4 border-b">Name</th>
+              <th className="py-2 px-4 border-b">Description</th>
+              <th className="py-2 px-4 border-b">Price</th>
+              <th className="py-2 px-4 border-b">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-
             {foods.map((food) => (
               <tr key={food.id}>
-                <td>
+                <td className="py-2 px-4 border-b">{food.id}</td>
+                <td className="py-2 px-4 border-b">
                   <div className="flex items-center gap-3">
                     <div className="avatar">
-                      <div className="mask mask-squircle ">
+                      <div className="mask mask-squircle">
                         <Image
                           src={food.image}
-                          alt="Avatar Tailwind CSS Component"
-                          width={100}
-                          height={100}
+                          alt={food.name}
+                          width={50}
+                          height={50}
                         />
                       </div>
                     </div>
-                    
                   </div>
                 </td>
-                <td>
-                 {food.name}
+                <td className="py-2 px-4 border-b">{food.name}</td>
+                <td className="py-2 px-4 border-b">{food.description}</td>
+                <td className="py-2 px-4 border-b">${food.price}</td>
+                <td className="py-2 px-4 border-b">
+                  <div className="flex flex-col gap-2">
+                    <button
+                      className="btn btn-info btn-xs"
+                      onClick={() => openUpdateModal(food)}
+                    >
+                      Update
+                    </button>
+                    <button className="btn btn-error btn-xs">Delete</button>
+                  </div>
                 </td>
-                <td>
-                 {food.description}
-                </td>
-                <td>${food.price}</td>
-                <td className=" ">
-  <div className="flex flex-col gap-2">
-    <button className="btn btn-info btn-xs">Edit</button>
-    <button className="btn btn-error btn-xs">Delete</button>
-  </div>
-</td>
               </tr>
             ))}
           </tbody>

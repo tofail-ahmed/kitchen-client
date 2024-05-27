@@ -59,8 +59,18 @@ const foodSlice=createSlice({
     addFood:(state,action)=>{
       // console.log("action",action)
       state.push(action.payload)
+    },
+    updateFood:(state,action)=>{
+const {id,name,description,price,image}=action.payload;
+const upFood=state.find(food=>food.id==id);
+if(upFood){
+  upFood.name=name;
+  upFood.description=description;
+  upFood.price=price;
+  upFood.image=image;
+}
     }
   }
 })
-export const {addFood}=foodSlice.actions;
+export const {addFood,updateFood}=foodSlice.actions;
 export default foodSlice.reducer;

@@ -9,9 +9,9 @@ interface FoodItem {
   image: string;
 }
 interface CreateModalProps {
-  closeModal: () => void;
+      closeCreateModal: () => void;
 }
-const CreateModal = ({ closeModal }: CreateModalProps) => {
+const CreateModal = ({ closeCreateModal }: CreateModalProps) => {
   const dispatch = useAppDispatch();
   const foods = useAppSelector((state) => state.foodItems);
 
@@ -23,9 +23,9 @@ const CreateModal = ({ closeModal }: CreateModalProps) => {
 
   const onSubmit: SubmitHandler<FoodItem> = (data) => {
     // event?.preventDefault();
-    console.log(data);
-    dispatch(addFood(data));
-    closeModal();
+//     console.log(data);
+    dispatch(addFood({id:foods[foods.length-1].id+1,...data}));
+    closeCreateModal();
     // Add your logic here to handle the form submission
   };
   return (
@@ -85,7 +85,7 @@ const CreateModal = ({ closeModal }: CreateModalProps) => {
             )}
           </div>
           <div className="flex justify-end space-x-2">
-            <button type="button" className="btn" onClick={closeModal}>
+            <button type="button" className="btn" onClick={closeCreateModal}>
               Close
             </button>
             <button type="submit" className="btn btn-primary">
