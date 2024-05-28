@@ -6,6 +6,7 @@ import { useAppSelector } from "@/redux/hook";
 import { Provider } from "react-redux";
 import { persistor, store } from "@/redux/store";
 import { PersistGate } from 'redux-persist/integration/react'
+import { ToastContainer } from "react-toastify";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -41,6 +42,7 @@ function RootContent({ children }: { children: React.ReactNode }) {
           }`}
           // style={{ overflow: "auto" }}
         >
+           <ToastContainer />
           {children}
         </div>
       </body>

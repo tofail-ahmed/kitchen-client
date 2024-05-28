@@ -6,6 +6,8 @@ import { useState } from "react";
 import CreateModal from "./components/createModal";
 import UpdateModal from "./components/UpdateModal";
 import { deletefood } from "@/redux/reducers/foodReducer";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 interface FoodItem {
   id?: number;
   name: string;
@@ -45,7 +47,35 @@ export default function Home() {
   const handleDelete=(id:number)=>{
     dispatch(deletefood({id:id}))
   }
-
+  const confirmDelete = (id:number) => {
+    toast.warn(
+      <div>
+        <p>Are you sure you want to delete this item?</p>
+        <div className="flex gap-4">
+          <button
+            className="bg-red-300 px-2 rounded-md"
+            onClick={() => handleDelete(id)}
+          >
+            Yes
+          </button>
+          <button
+            className="bg-green-300 px-2 rounded-md"
+            onClick={() => toast.dismiss}
+          >
+            No
+          </button>
+        </div>
+      </div>,
+      {
+        position: "top-right",
+        autoClose: false,
+        closeOnClick: true,
+        closeButton: true,
+        draggable: false,
+        progress: undefined,
+      }
+    );
+  };
  
 
   return (
@@ -105,7 +135,7 @@ export default function Home() {
                     >
                       Update
                     </button>
-                    <button onClick={()=>handleDelete(food.id)} className="btn btn-error btn-xs">Delete</button>
+                    <button onClick={()=>confirmDelete(food.id)} className="btn btn-error btn-xs">Delete</button>
                   </div>
                 </td>
               </tr>
