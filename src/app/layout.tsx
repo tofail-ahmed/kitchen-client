@@ -31,16 +31,16 @@ export default function RootLayout({
 }
 
 function RootContent({ children }: { children: React.ReactNode }) {
-  const darkMode = useAppSelector((state) => state.theme.darkMode);
+  // const darkMode = useAppSelector((state) => state.theme.darkMode);
   // console.log(darkMode);
+  const themeColor=useAppSelector((state)=>state.theme.themeColor)
+  console.log(themeColor)
   return (
     <html lang="en">
       <body    >
         <div
-          className={`${
-            darkMode ? "text-white bg-slate-400" : "text-black bg-white"
-          }`}
-          // style={{ overflow: "auto" }}
+         
+          style={{backgroundColor:themeColor}}
         >
            <ToastContainer />
           {children}

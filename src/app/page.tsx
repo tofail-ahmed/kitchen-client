@@ -1,6 +1,6 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { toggleDarkMode } from "@/redux/theme/themeSlice";
+import { toggleDarkMode, setThemeColor } from "@/redux/theme/themeSlice";
 import Image from "next/image";
 import { useState } from "react";
 import CreateModal from "./components/createModal";
@@ -8,6 +8,7 @@ import UpdateModal from "./components/UpdateModal";
 import { deletefood } from "@/redux/reducers/foodReducer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 interface FoodItem {
   id?: number;
   name: string;
@@ -18,16 +19,18 @@ interface FoodItem {
 
 export default function Home() {
   const darkMode = useAppSelector((state) => state.theme.darkMode);
+  const themeColor = useAppSelector((state) => state.theme.themeColor);
   const dispatch = useAppDispatch();
+
   const handleDarkMode = () => {
     dispatch(toggleDarkMode());
   };
+
   const foods = useAppSelector((state) => state.foodItems);
 
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [currentFoodItem, setCurrentFoodItem] = useState<FoodItem | null>(null);
-  
 
   const openCreateModal = () => {
     setShowCreateModal(true);
@@ -36,7 +39,7 @@ export default function Home() {
     setShowCreateModal(false);
   };
 
-  const openUpdateModal = (foodItem:FoodItem ) => {
+  const openUpdateModal = (foodItem: FoodItem) => {
     setCurrentFoodItem(foodItem);
     setShowUpdateModal(true);
   };
@@ -44,10 +47,12 @@ export default function Home() {
     setCurrentFoodItem(null);
     setShowUpdateModal(false);
   };
-  const handleDelete=(id:number)=>{
-    dispatch(deletefood({id:id}))
-  }
-  const confirmDelete = (id:number) => {
+
+  const handleDelete = (id: number) => {
+    dispatch(deletefood({ id: id }));
+  };
+
+  const confirmDelete = (id: number) => {
     toast.warn(
       <div>
         <p>Are you sure you want to delete this item?</p>
@@ -76,22 +81,38 @@ export default function Home() {
       }
     );
   };
- 
+
+  const [colorInput, setColorInput] = useState('');
+
+  const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setColorInput(e.target.value);
+  };
+
+  const applyColor = () => {
+    dispatch(setThemeColor(colorInput));
+  };
 
   return (
-    <div className="max-w-[1200px] mx-auto overflow-y-auto p-4">
-      <button className="p-2 bg-green-300 rounded-md" onClick={handleDarkMode}>
+    <div className="max-w-[1200px] mx-auto overflow-y-auto p-4" >
+      {/* <button className="p-2 bg-green-300 rounded-md" onClick={handleDarkMode}>
         {darkMode ? "Light Theme" : "Dark Theme"}
-      </button>
+      </button> */}
+      <input 
+        type="text" 
+        placeholder="Set bg-color" 
+        value={colorInput} 
+        onChange={handleColorChange} 
+        className="ml-4 p-2 border rounded-md"
+      />
+      <button onClick={applyColor} className="ml-2 p-2 bg-blue-300 rounded-md">Set Theme</button>
       <button onClick={openCreateModal} className="ml-4 p-2 bg-green-500 rounded-md">
         Create Food+
       </button>
       {showCreateModal && <CreateModal closeCreateModal={closeCreateModal} />}
       {showUpdateModal && currentFoodItem && (
         <UpdateModal
-        closeUpdateModal={closeUpdateModal}
+          closeUpdateModal={closeUpdateModal}
           initialData={currentFoodItem}
-          
         />
       )}
       <div className="overflow-x-auto mt-4">
@@ -135,7 +156,7 @@ export default function Home() {
                     >
                       Update
                     </button>
-                    <button onClick={()=>confirmDelete(food.id)} className="btn btn-error btn-xs">Delete</button>
+                    <button onClick={() => confirmDelete(food.id)} className="btn btn-error btn-xs">Delete</button>
                   </div>
                 </td>
               </tr>
