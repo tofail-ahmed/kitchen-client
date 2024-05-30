@@ -99,13 +99,13 @@ export default function Home() {
       </button> */}
       <input 
         type="text" 
-        placeholder="Set bg-color" 
+        placeholder="Set Theme Color" 
         value={colorInput} 
         onChange={handleColorChange} 
         className="ml-4 p-2 border rounded-md"
       />
-      <button onClick={applyColor} className="ml-2 p-2 bg-blue-300 rounded-md">Set Theme</button>
-      <button onClick={openCreateModal} className="ml-4 p-2 bg-green-500 rounded-md">
+      <button onClick={applyColor} className="ml-2 p-2 bg-green-300 rounded-md border-2 border-slate-400">Set Theme</button>
+      <button onClick={openCreateModal} className="ml-4 p-2 bg-green-500 rounded-md border-2 border-slate-400">
         Create Food+
       </button>
       {showCreateModal && <CreateModal closeCreateModal={closeCreateModal} />}

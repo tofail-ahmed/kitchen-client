@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   darkMode: false,
-  themeColor: 'white', // default color
+  themeColor: 'skyblue', // default color
 };
 
 const themeSlice = createSlice({
